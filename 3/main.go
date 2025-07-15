@@ -59,8 +59,9 @@ func lengthOfLongestSubstring(s string) int {
 		charMap[s[right]] = right
 
 		// 更新最大长度
-		if right-left+1 > maxLength {
-			maxLength = right - left + 1
+		newLength := right - left + 1
+		if newLength > maxLength {
+			maxLength = newLength
 		}
 	}
 
