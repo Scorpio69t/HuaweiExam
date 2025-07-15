@@ -1,0 +1,52 @@
+测试用例1：
+输入：abcabcbb
+期望输出：3
+实际输出：3 ✓
+
+测试用例2：
+输入：bbbbb
+期望输出：1
+实际输出：1 ✓
+
+测试用例3：
+输入：pwwkew
+期望输出：3
+实际输出：3 ✓
+
+测试用例4：
+输入：（空字符串）
+期望输出：0
+实际输出：0 ✓
+
+测试用例5：
+输入：au
+期望输出：2
+实际输出：2 ✓
+
+测试用例6：
+输入：dvdf
+期望输出：3
+实际输出：3 ✓
+
+边界测试：
+- 单字符：a -> 1 ✓
+- 全不同：abcdefghijklmnopqrstuvwxyz -> 26 ✓
+- 全相同：aaaaaaaaaa -> 1 ✓
+- 特殊字符：!@#$%^&*() -> 10 ✓
+
+性能测试：
+- 暴力法：O(n³) 时间复杂度
+- 滑动窗口：O(n) 时间复杂度
+- 优化版：O(n) 时间复杂度，更好的常数因子
+
+滑动窗口过程示例（"abcabcbb"）：
+步骤1: left=0, right=0, window="a", length=1, max=1
+步骤2: left=0, right=1, window="ab", length=2, max=2
+步骤3: left=0, right=2, window="abc", length=3, max=3
+步骤4: left=1, right=3, window="bca", length=3, max=3
+步骤5: left=2, right=4, window="cab", length=3, max=3
+步骤6: left=3, right=5, window="abc", length=3, max=3
+步骤7: left=4, right=6, window="bcb", length=3, max=3
+步骤8: left=6, right=7, window="b", length=1, max=3
+
+最终结果：3 
