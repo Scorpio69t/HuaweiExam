@@ -71,3 +71,4 @@ go.work.sum
 # Editor/IDE
 .idea/
 .vscode/
+.DS_Store

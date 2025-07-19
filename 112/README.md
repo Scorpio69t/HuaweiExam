@@ -8,7 +8,7 @@
 
 ## 示例 1
 
-[pathsum1](./images/pathsum1.jpg)
+![pathsum1](./images/pathsum1.jpg)
 
 输入：root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
 输出：true
@@ -16,7 +16,7 @@
 
 ## 示例 2
 
-[pathsum2](./images/pathsum2.jpg)
+![pathsum2](./images/pathsum2.jpg)
 
 输入：root = [1,2,3], targetSum = 5
 输出：false
