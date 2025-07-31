@@ -34,6 +34,49 @@
 
 ### 方法一：前缀和 + 哈希表（推荐）
 
+```mermaid
+graph TD
+    A[开始: nums=[1,1,1], k=2] --> B[初始化: prefixSum=0, prefixMap={0:1}]
+    B --> C[遍历数组: i=0]
+    C --> D[prefixSum += nums[0] = 1]
+    D --> E[查找: prefixSum-k = 1-2 = -1]
+    E --> F[prefixMap[-1] 不存在]
+    F --> G[prefixMap[1]++]
+    G --> H[遍历: i=1]
+    H --> I[prefixSum += nums[1] = 2]
+    I --> J[查找: prefixSum-k = 2-2 = 0]
+    J --> K[prefixMap[0] = 1, count++]
+    K --> L[prefixMap[2]++]
+    L --> M[遍历: i=2]
+    M --> N[prefixSum += nums[2] = 3]
+    N --> O[查找: prefixSum-k = 3-2 = 1]
+    O --> P[prefixMap[1] = 1, count++]
+    P --> Q[返回 count=2]
+    
+    style Q fill:#90EE90
+    style A fill:#E6F3FF
+    style B fill:#FFF2CC
+```
+
+### 前缀和计算过程
+
+```mermaid
+graph LR
+    A["数组: [1,1,1]"] --> B["前缀和: [0,1,2,3]"]
+    B --> C["索引: [0,1,2,3]"]
+    
+    subgraph "查找过程"
+        D["i=1: prefixSum=1, 查找 1-2=-1, 不存在"]
+        E["i=2: prefixSum=2, 查找 2-2=0, 存在1个"]
+        F["i=3: prefixSum=3, 查找 3-2=1, 存在1个"]
+    end
+    
+    G["结果: 2"]
+    
+    style G fill:#90EE90
+    style A fill:#E6F3FF
+```
+
 **核心思想**：
 - 使用前缀和数组快速计算任意区间的和
 - 利用哈希表记录每个前缀和出现的次数

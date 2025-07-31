@@ -34,6 +34,74 @@
 
 ### 方法一：前缀和 + 哈希表（推荐）
 
+```mermaid
+graph TD
+    A[开始: root=[10,5,-3,3,2,null,11,3,-2,null,1], targetSum=8] --> B[初始化: prefixMap={0:1}]
+    B --> C[DFS遍历: 节点10]
+    C --> D[currentSum=10, 查找 10-8=2, 不存在]
+    D --> E[prefixMap[10]++]
+    E --> F[DFS左子树: 节点5]
+    F --> G[currentSum=15, 查找 15-8=7, 不存在]
+    G --> H[prefixMap[15]++]
+    H --> I[DFS左子树: 节点3]
+    I --> J[currentSum=18, 查找 18-8=10, 存在1个]
+    J --> K[count++]
+    K --> L[prefixMap[18]++]
+    L --> M[继续遍历...]
+    M --> N[返回总count]
+    
+    style N fill:#90EE90
+    style A fill:#E6F3FF
+    style B fill:#FFF2CC
+```
+
+### 二叉树路径和计算
+
+```mermaid
+graph TD
+    A["二叉树结构"] --> B["路径和计算"]
+    
+    subgraph "节点遍历"
+        C["节点10: currentSum=10"]
+        D["节点5: currentSum=15"]
+        E["节点3: currentSum=18"]
+        F["节点2: currentSum=20"]
+        G["节点-3: currentSum=7"]
+        H["节点11: currentSum=18"]
+    end
+    
+    subgraph "目标查找"
+        I["查找 target=8"]
+        J["10-8=2: 不存在"]
+        K["15-8=7: 不存在"]
+        L["18-8=10: 存在1个"]
+        M["20-8=12: 不存在"]
+        N["7-8=-1: 不存在"]
+        O["18-8=10: 存在1个"]
+    end
+    
+    style L fill:#90EE90
+    style O fill:#90EE90
+    style A fill:#E6F3FF
+```
+
+### 前缀和哈希表状态
+
+```mermaid
+graph LR
+    A["初始状态"] --> B["prefixMap={0:1}"]
+    B --> C["节点10后"] 
+    C --> D["prefixMap={0:1, 10:1}"]
+    D --> E["节点5后"]
+    E --> F["prefixMap={0:1, 10:1, 15:1}"]
+    F --> G["节点3后"]
+    G --> H["prefixMap={0:1, 10:1, 15:1, 18:1}"]
+    H --> I["找到目标: 18-8=10"]
+    
+    style I fill:#90EE90
+    style A fill:#E6F3FF
+```
+
 **核心思想**：
 - 使用前缀和记录从根节点到当前节点的路径和
 - 利用哈希表记录每个前缀和出现的次数

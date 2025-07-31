@@ -127,21 +127,80 @@ func search(nums []int, target int) int {
 
 ## 算法图解
 
+### 二分查找过程图
+
+```mermaid
+graph TD
+    A[开始: nums=[4,5,6,7,0,1,2], target=0] --> B[第一次二分: left=0, right=6, mid=3]
+    B --> C{检查 nums[mid]=7}
+    C --> D[左半部分有序: nums[0:3]=[4,5,6,7]]
+    D --> E{target=0 在左半部分范围内?}
+    E -->|否| F[在右半部分搜索: left=4, right=6]
+    F --> G[第二次二分: left=4, right=6, mid=5]
+    G --> H{检查 nums[mid]=1}
+    H --> I[左半部分有序: nums[4:4]=[0]]
+    I --> J{target=0 在左半部分范围内?}
+    J -->|是| K[在左半部分搜索: left=4, right=4]
+    K --> L[第三次二分: left=4, right=4, mid=4]
+    L --> M{检查 nums[mid]=0}
+    M --> N[找到目标值! 返回索引4]
+    
+    style N fill:#90EE90
+    style A fill:#E6F3FF
+    style B fill:#FFF2CC
+    style G fill:#FFF2CC
+    style L fill:#FFF2CC
 ```
-示例: nums = [4,5,6,7,0,1,2], target = 0
 
-第一次二分: left=0, right=6, mid=3
-nums[mid]=7, nums[left]=4, nums[right]=2
-左半部分[4,5,6,7]有序，但target=0不在范围内
-在右半部分[0,1,2]搜索
+### 旋转数组结构图
 
-第二次二分: left=4, right=6, mid=5
-nums[mid]=1, nums[left]=0, nums[right]=2
-左半部分[0]有序，target=0在范围内
-在左半部分搜索
+```mermaid
+graph LR
+    A[原始有序数组] --> B[在位置k旋转]
+    B --> C[旋转后数组]
+    
+    subgraph "原始数组"
+        D[0,1,2,3,4,5,6,7]
+    end
+    
+    subgraph "旋转后数组"
+        E[4,5,6,7,0,1,2]
+    end
+    
+    subgraph "有序区间"
+        F[左半部分有序: 4,5,6,7]
+        G[右半部分有序: 0,1,2]
+    end
+    
+    style F fill:#90EE90
+    style G fill:#90EE90
+    style E fill:#FFE6CC
+```
 
-第三次二分: left=4, right=4, mid=4
-nums[mid]=0 == target，返回4
+### 二分查找决策树
+
+```mermaid
+graph TD
+    A[开始二分查找] --> B{检查 nums[mid] == target?}
+    B -->|是| C[返回 mid]
+    B -->|否| D{左半部分有序?<br/>nums[left] <= nums[mid]}
+    D -->|是| E{target 在左半部分范围内?<br/>nums[left] <= target < nums[mid]}
+    E -->|是| F[在左半部分搜索<br/>right = mid - 1]
+    E -->|否| G[在右半部分搜索<br/>left = mid + 1]
+    D -->|否| H{target 在右半部分范围内?<br/>nums[mid] < target <= nums[right]}
+    H -->|是| I[在右半部分搜索<br/>left = mid + 1]
+    H -->|否| J[在左半部分搜索<br/>right = mid - 1]
+    
+    F --> K{left <= right?}
+    G --> K
+    I --> K
+    J --> K
+    K -->|是| B
+    K -->|否| L[返回 -1]
+    
+    style C fill:#90EE90
+    style L fill:#FFB6C1
+    style A fill:#E6F3FF
 ```
 
 ## 边界情况处理
