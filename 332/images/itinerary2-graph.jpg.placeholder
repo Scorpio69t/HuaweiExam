@@ -1,0 +1,9 @@
+# Image Placeholder
+
+This file serves as a placeholder for itinerary2-graph.jpg
+The actual image should show the flight connections for:
+- JFK -> SFO, JFK -> ATL
+- SFO -> ATL
+- ATL -> JFK, ATL -> SFO
+
+Expected path: JFK -> ATL -> JFK -> SFO -> ATL -> SFO

@@ -1,0 +1,10 @@
+# Image Placeholder
+
+This file serves as a placeholder for itinerary1-graph.jpg
+The actual image should show the flight connections for:
+- MUC -> LHR
+- JFK -> MUC 
+- SFO -> SJC
+- LHR -> SFO
+
+Expected path: JFK -> MUC -> LHR -> SFO -> SJC
