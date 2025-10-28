@@ -16,9 +16,7 @@ func grayCode1(n int) []int {
 	result := make([]int, len(prev)*2)
 
 	// 前一半：直接添加0
-	for i := 0; i < len(prev); i++ {
-		result[i] = prev[i]
-	}
+	copy(result, prev)
 
 	// 后一半：添加1并镜像反射
 	for i := 0; i < len(prev); i++ {
